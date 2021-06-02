@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png"  href="/pub/img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Tofa Project - Developers Guide</title>
+    <style>
+        .title img {
+            height: 80px;
+        }
+
+        .title.container {
+            margin-bottom: 3px;
+            position: relative;
+            right: 15px;
+        }
+
+        .content p {
+            font-weight: 300;
+        }
+
+        a {
+            color: blue;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color:brown;
+        }
+
+        a:active {
+            color: red;
+        }
+
+        .section {
+            margin-bottom: -20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="row title container">
+    <div class="col">
+        <a href="/">
+            <img class="logo" src="/pub/img/logo.png">
+        </a>
+    </div>
+    <div class="col">
+        <h4>Tofa Developers</h4>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content container">
+
+    <div class="section">
+        <h5 id="core_concepts">1. Core concepts</h5>
+        <div class="divider"></div>
+        <p class="flow-text">
+            Before understanding how Tofa works, developers must know how Tor works:
+            <a href="https://2019.www.torproject.org/docs/documentation" target="_blank">https://2019.www.torproject.org/docs/documentation</a>
+            <br>
+            <br>
+            Suppose there is an online web app named <b>Foo</b>, and a client of that web app named <b>Bar</b>.
+            On Tofa, each client is an onion service. That is, Bar has an onion service hosted on its own personal machine
+            dedicated for Foo app. When Foo wants to perform a 2FA based action, it contacts Bar's hidden service via Tor 
+            network with a custom token and waits for response. Based on response it executes the action.
+            Due to the nature of onion services, neither Foo nor Bar know their IP addresses, and there is no 
+            third party involved in the exchange. This type of communication ensures the privacy of both parties amid 
+            synchronized authentication.
+            <br>
+            <br>
+            <b id="auth_flow"><i>The flow of authentication is this:</i></b>
+            <br>
+            1) Before everything, Bar opens its Tofa Client, which can be downloaded <a href="downloads.htm">here</a>, 
+            and creates a new app.
+            <br>
+            2) Then Bar registers its Foo account with the app it created on its Tofa Client.
+            <br>
+            3) After registration is successful, Foo can contact Bar amid 2FA related activities. 
+            The human will see a notification/Yes&No modal in Tofa Client when so, having the opportunity to act accordingly. 
+            Simple as that.
+        </p>
+    </div>
+
+    <div class="section">
+        <h5 id="architecture">2. Architecture</h5>
+        <div class="divider"></div>
+        <p class="flow-text">
+            We'll keep in stage Foo and Bar discussed in previous section. [to be continued]
+        </p>
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png"  href="/pub/img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Tofa Project - About</title>
+    <style>
+        .title img {
+            height: 80px;
+        }
+
+        .title.container {
+            margin-bottom: 3px;
+            position: relative;
+            right: 15px;
+        }
+
+        .content p {
+            font-weight: 300;
+        }
+
+        a {
+            color: blue;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color:brown;
+        }
+
+        a:active {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="row title container">
+    <div class="col">
+        <a href="/">
+            <img class="logo" src="/pub/img/logo.png">
+        </a>
+    </div>
+    <div class="col">
+        <h4>About Tofa</h4>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content container">
+    <p class="flow-text">Tofa is an open source two factor authenticator (2FA) built on top of <a href="https://torproject.org" target="_blak">Tor</a>,
+        thus inheriting 2 core properties: it's <i>anonymous</i> and <i>decentralized</i>. 
+        Unlike other authenticators like GAuth/Authy, or traditional Email/SMS authentication with expiration links/codes, 
+        Tofa does not require third party involvment between cloud server and client. 
+        The communication is done End-To-End (E2E) between service and client ensuring the privacy of both parties.
+        It can be integrated easily with onion and clearnet services.
+    </p>
+    <br>
+    <p class="flow-text">
+        Additional information is splitted according to end user case.
+        If you are a developer, you should consult the <a href="developers.htm">developers</a> section. 
+        Otherwise you may be looking for the <a href="downloads.htm">downloads</a> and <a href="tutorial.htm">tutorial</a> page.
+    </p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
