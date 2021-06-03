@@ -13,6 +13,10 @@ ServerJS.init('127.0.0.1:9050')
 const App = Express()
 
 App.use(Bodyparser.json())
+App.use('/', (req, res, next)=>{
+    res.set('onion-location', 'http://7o5hh2f6gdxusghkqphrgwhs3xjqogakmusscbs4ektjv42sqeft4iqd.onion')
+    next()
+})
 App.disable('x-powered-by');
 App.use(require('./routes'))
 
