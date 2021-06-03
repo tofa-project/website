@@ -21,5 +21,5 @@ App.disable('x-powered-by');
 App.use(require('./routes'))
 
 // server part
-httpServer(App).listen("3000", console.log(`Server listening on 3000`))
+httpServer(App).listen("3000", '127.0.0.1', console.log(`Server listening on 3000`))
 
