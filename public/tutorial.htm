@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png"  href="/pub/img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Tofa Project - Tutorial</title>
+    <style>
+        .title img {
+            height: 80px;
+        }
+
+        .title.container {
+            margin-bottom: 3px;
+            position: relative;
+            right: 15px;
+        }
+
+        .content p {
+            font-weight: 300;
+        }
+
+        a {
+            color: blue;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color:brown;
+        }
+
+        a:active {
+            color: red;
+        }
+
+        .section {
+            margin-bottom: -20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="row title container">
+    <div class="col">
+        <a href="/">
+            <img class="logo" src="/pub/img/logo.png">
+        </a>
+    </div>
+    <div class="col">
+        <h4>Tutorial</h4>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content container">
+
+    <div class="section">
+        <p class="flow-text">
+            1. First download Tofa from <a href="downloads.htm">here</a>. 
+            Upon launching it you will be greeted with this screen.
+            <br>
+
+            <img src="/pub/img/tut/pass_screen.png" 
+                class="materialboxed responsive-img"
+                style="max-height: 500px;">
+            <br>
+
+            It's important to choose a strong password and remember it forever!
+            This password is used to encrypt/decrypt your local database which holds
+            your onion services private keys. If you ever loose your password
+            you will never be able to use the 2FA features for the apps you have created.
+            Database is encrypted using AES-256-GCM with random salts on each write.
+        </p>
+        <div class="divider"></div>
+    </div>
+
+    <div class="section">
+        <p class="flow-text">
+            2. After choosing the password you will be greeted with the following screen.
+            To create your first ever app click on the button:
+            <br>
+
+            <img src="/pub/img/tut/new_app.png" 
+                class="materialboxed responsive-img"
+                style="max-height: 500px;">
+            <br>
+
+            Name must be unique for each app, but that will be checked by Tofa Client.
+            After creation, your app will be broadcasted to the Tor network, process which will take
+            several seconds.
+        </p>
+        <div class="divider"></div>
+    </div>
+
+    <div class="section">
+        <p class="flow-text">
+            3. "Published" indicates if app is published to Tor network.
+            "Registered" indicates if app is registered with the online service you're
+            going to link it to. As end user, this should be enough to bother with!
+            To see the Tofa URI you need to supply to the online service hit the
+            "view button" correlated with your app.
+            <br>
+
+            <div class="row">
+                <div class="col s6">
+                    <img src="/pub/img/tut/my_app.png" 
+                        class="materialboxed responsive-img"
+                        style="max-height: 450px;">
+                </div>
+                <div class="col s6">
+                    <img src="/pub/img/tut/my_app_info.png" 
+                        class="materialboxed responsive-img"
+                        style="max-height: 450px;">
+                </div>
+            </div>
+        </p>
+        <div class="divider"></div>
+    </div>
+
+    <div class="section">
+        <p class="flow-text">
+            Excellent! You can create more apps and register them with different services at your will.
+            Remember to keep Tofa Client open whenever you wish to use 2FA with the registered services. 
+            And <b>never never</b> post information about your app anywhere else to avoid privacy disclosure
+            and impersonation, which can occur if you share your app ID.
+            Pop-ups will show up whenever an external entity contacts your Client and ask for your permission!
+            For example: 
+            <br>
+
+            <img src="/pub/img/tut/example_pending.png" 
+                class="materialboxed responsive-img"
+                style="max-height: 450px;">
+        </p>
+        <div class="divider"></div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    M.AutoInit()
+</script>
+</body>
+</html>

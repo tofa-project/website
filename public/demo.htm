@@ -101,7 +101,7 @@
         4). Choose one of the following actions!
 
 
-        <div :disabled="isRegistered" class="btn purple waves-effect" @click="register()">Register</div>
+        <div :disabled="isRegistered || uri.length === 0" class="btn purple waves-effect" @click="register()">Register</div>
         &nbsp<span v-if="auth_token">Auth token is: {{ auth_token }}</span>
         <br>
         <br>
