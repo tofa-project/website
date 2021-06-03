@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png"  href="/pub/img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Tofa Project - Demo</title>
+    <style>
+        .title img {
+            height: 80px;
+        }
+
+        .title.container {
+            margin-bottom: 3px;
+            position: relative;
+            right: 15px;
+        }
+
+        .content p {
+            font-weight: 300;
+        }
+
+        a {
+            color: blue;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color:brown;
+        }
+
+        a:active {
+            color: red;
+        }
+
+        input.uri {
+            width: 100%;
+            padding: 5px;
+            text-align: center;
+        }
+
+    </style>
+
+    <!-- the dimmer -->
+    <style>
+        .dimmer {
+            position: fixed;
+            background: #2b2a2a;
+            height: 100%;
+            z-index: 10000000;
+            width: 100%;
+            opacity: 70%;
+            display: none;
+        }
+
+        .progress {
+            position: relative;
+            bottom: 7px;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+
+ <!-- the dimmer -->
+ <div class="dimmer" id="dimmer" >
+    <div class="progress" progress="">
+        <div class="indeterminate red darken-2"></div>
+    </div>
+</div>
+
+<div class="row title container">
+    <div class="col">
+        <a href="/">
+            <img class="logo" src="/pub/img/logo.png">
+        </a>
+    </div>
+    <div class="col">
+        <h4>Demo</h4>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content container" id="app">
+    <p class="flow-text">
+        1) Please make sure you have the latest Tofa Client version. You can download
+        it from here: <a href="downloads.htm">downloads</a>.
+        <br>
+        <br>
+        2) Create a new application as shown in <a href="tutorial.htm">Tutorial</a>
+        <br>
+        <br>
+        3) Copy app's URI here:
+        <input type="text" class="browser-default uri" placeholder="URI here" v-model="uri">
+        <br>
+        <br>
+
+        4). Choose one of the following actions!
+
+
+        <div :disabled="isRegistered" class="btn purple waves-effect" @click="register()">Register</div>
+        &nbsp<span v-if="auth_token">Auth token is: {{ auth_token }}</span>
+        <br>
+        <br>
+        <div :disabled="!isRegistered" class="btn green waves-effect" @click="ask()">Ask for confirmation</div>
+        <br>
+        <br>
+        <div :disabled="!isRegistered" class="btn blue waves-effect" @click="info()">Send notification</div>
+        <br>
+        <br>
+    </p>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    const toast = function(msg){
+        M.toast({html: msg})
+    }
+
+    const _ = function(id){
+        return document.getElementById(id)
+    }
+
+    const showDimmer = function(){
+        _('dimmer').style.display = 'block'
+    }
+
+    const hideDimmer = function(){
+        _('dimmer').style.display = 'none'
+    }
+
+    const App = new Vue({
+        el: '#app',
+        data(){
+            return{
+                uri: '',
+                isRegistered: false,
+                auth_token: '',
+            }
+        },
+
+        methods:{
+            register(){
+                showDimmer()
+
+                axios.post('/api/reg', {uri: this.uri})
+
+                .then(res=>{
+                    this.auth_token = res.data.auth_token
+                    this.isRegistered = true
+                    toast("Registration done!")
+                    hideDimmer()
+                })
+
+                .catch(err=>{
+                    let msg = err.response.data.message // fucking long string wasted 10 minutes of my life!
+                    toast(msg ? msg: 'Unknwon error occurred! Maybe app already registered?')
+                    hideDimmer()
+                })
+            },
+
+            ask(){
+                showDimmer()
+                
+                axios.post('/api/ask', {
+                    uri: this.uri,
+                    auth_token: this.auth_token,
+                })
+
+                .then(res=>{
+                    toast(`Action has been ${res.data.allowed ? 'allowed' : 'denied'} !`)
+                    hideDimmer()
+                })
+
+                .catch(err=>{
+                    let msg = err.response.data.message
+                    toast(msg ? msg: 'Unknwon error occurred!')
+                    hideDimmer()
+                })
+            },
+
+            info(){
+                showDimmer()
+
+                axios.post('/api/info', {
+                    uri: this.uri,
+                    auth_token: this.auth_token,
+                })
+
+                .then(res=>{
+                    toast(`Notification sent!`)
+                    hideDimmer()
+                })
+
+                .catch(err=>{
+                    let msg = err.response.data.message
+                    toast(msg ? msg: 'Unknwon error occurred!')
+                    hideDimmer()
+                })
+            },
+        },
+
+
+    })
+</script>
+</body>
+</html>
