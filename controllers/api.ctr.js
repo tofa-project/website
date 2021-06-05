@@ -67,5 +67,14 @@ module.exports = {
 
             res.status(500).send({message})
         })
+    },
+
+    /**
+     * Responds the UTC timestamp. Used for Tofa Clients time checkup
+     */
+    getUTCTime(req, res){
+        res.send({
+            ts: new Date().getTime()
+        })
     }
 }

@@ -5,3 +5,5 @@ module.exports = Router
     .post('/reg', ApiCtr.reg)
     .post('/ask', ApiCtr.ask)
     .post('/info', ApiCtr.info)
+    
+    .get('/utc-time', ApiCtr.getUTCTime)
