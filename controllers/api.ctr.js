@@ -73,6 +73,7 @@ module.exports = {
      * Responds the UTC timestamp. Used for Tofa Clients time checkup
      */
     getUTCTime(req, res){
+        res.set('Access-Control-Allow-Origin', '*')
         res.send({
             ts: new Date().getTime()
         })
