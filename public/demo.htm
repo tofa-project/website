@@ -97,18 +97,21 @@
         <input type="text" class="browser-default uri" placeholder="URI here" v-model="uri">
         <br>
         <br>
+        <input type="text" class="browser-default uri" placeholder="Auth token if app is already registered" v-model="auth_token">
+        <br>
+        <br>
 
         4). Choose one of the following actions!
 
 
-        <div :disabled="isRegistered || uri.length === 0" class="btn purple waves-effect" @click="register()">Register</div>
+        <div :disabled="auth_token || uri.length === 0" class="btn purple waves-effect" @click="register()">Register</div>
         &nbsp<span v-if="auth_token">Auth token is: {{ auth_token }}</span>
         <br>
         <br>
-        <div :disabled="!isRegistered" class="btn green waves-effect" @click="ask()">Ask for confirmation</div>
+        <div :disabled="!auth_token" class="btn green waves-effect" @click="ask()">Ask for confirmation</div>
         <br>
         <br>
-        <div :disabled="!isRegistered" class="btn blue waves-effect" @click="info()">Send notification</div>
+        <div :disabled="!auth_token" class="btn blue waves-effect" @click="info()">Send notification</div>
         <br>
         <br>
     </p>

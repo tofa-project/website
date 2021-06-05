@@ -1,5 +1,5 @@
-const { ServerJS} = require('../logic')
-const {CallRejected, BadURI, CallForbidden} = require('../logic/server-js/src/errors')
+const ServerJS = require('tofa-server-js')
+const {CallRejected, BadURI, CallForbidden} = require('tofa-server-js/src/errors')
 
 /**
  * Controller methods launched amid api calls
@@ -42,7 +42,7 @@ module.exports = {
                 message = "Invalid URI!"
 
             if(err instanceof CallForbidden)
-                message = "Call forbidden! Authentication token missing? this is only a demo"
+                message = "Call forbidden! Authentication token bad/missing?"
                 
             res.status(500).send({message})
         })
@@ -63,7 +63,7 @@ module.exports = {
                 message = "Invalid URI!"
 
             if(err instanceof CallForbidden)
-                message = "Call forbidden! Authentication token missing? this is only a demo"
+                message = "Call forbidden! Authentication token bad/missing?"
 
             res.status(500).send({message})
         })

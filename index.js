@@ -3,7 +3,7 @@ const Express = require('express')
 const Dotenv = require('dotenv')
 const Bodyparser = require('body-parser')
 const { httpServer } = require('./servers')
-const {ServerJS} = require('./logic')
+const ServerJS = require('tofa-server-js')
 
 // general config
 Dotenv.config()
@@ -21,5 +21,5 @@ App.disable('x-powered-by');
 App.use(require('./routes'))
 
 // server part
-httpServer(App).listen("3000", '127.0.0.1', console.log(`Server listening on 3000`))
+httpServer(App).listen("3000", '127.0.0.1', console.log(`Server listening on 127.0.0.1:3000`))
 
