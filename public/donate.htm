@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png"  href="/pub/img/logo.png">
+    <link rel="stylesheet" href="css/mat.css">
+    <title>Tofa Project - Donate</title>
+    <style>
+        .title img {
+            height: 80px;
+        }
+
+        .title.container {
+            margin-bottom: 3px;
+            position: relative;
+            right: 15px;
+        }
+
+        .content p {
+            font-weight: 300;
+        }
+
+        a {
+            color: blue;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color:brown;
+        }
+
+        a:active {
+            color: red;
+        }
+
+        .section {
+            margin-bottom: -20px;
+        }
+
+        .col {
+            word-break: break-all;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="row title container">
+    <div class="col">
+        <a href="/">
+            <img class="logo" src="/pub/img/logo.png">
+        </a>
+    </div>
+    <div class="col">
+        <h4>Donate</h4>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content container">
+
+    <p class="flow-text">
+        You can buy me a cappuccino.
+    </p>
+    <br>
+
+    <div class="row">
+        <div class="col">
+            <div id="xmr"></div>
+        </div>
+        <div class="col"><b>Monero</b>: 87FwbGgDpL9B9KL4y9GhwJ9P3tCFrZCs8jh6tYThePmghU4wL5j6zSPERfmsYfg3undWdeFnF5H7kBiCAsw8FW825ddXvpX</div>
+    </div>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col">
+            <div id="btc"></div>
+        </div>
+        <div class="col"><b>Bitcoin</b>: 3D5FnXaysNJawt91dYHPdjD2cU1Gb9QecB</div>
+    </div>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col">
+            <div id="eth"></div>
+        </div>
+        <div class="col"><b>Ethereum</b>: 0x96ad6039f162150ac8cd4d2cb3e274917331d522</div>
+    </div>   
+
+</div>
+
+<script src="js/mat.js"></script>
+<script src="js/qrcode.js"></script>
+<script>
+    document.getElementById('btc').innerHTML = new QRCode({
+        content: '3D5FnXaysNJawt91dYHPdjD2cU1Gb9QecB',
+        padding: 0,
+        width: 170,
+        height: 170,
+        ecl: 'Q'
+    }).svg()
+
+    document.getElementById('eth').innerHTML = new QRCode({
+        content: '0x96ad6039f162150ac8cd4d2cb3e274917331d522',
+        padding: 0,
+        width: 170,
+        height: 170,
+        ecl: 'Q'
+    }).svg()
+
+    document.getElementById('xmr').innerHTML = new QRCode({
+        content: '87FwbGgDpL9B9KL4y9GhwJ9P3tCFrZCs8jh6tYThePmghU4wL5j6zSPERfmsYfg3undWdeFnF5H7kBiCAsw8FW825ddXvpX',
+        padding: 0,
+        width: 170,
+        height: 170,
+        ecl: 'Q'
+    }).svg()
+</script>
+</body>
+</html>
